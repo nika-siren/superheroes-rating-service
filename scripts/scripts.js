@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // add the delays
         // добавляем задержки
-        const ratingLabel = this.el.querySelector(`[for="rating-${id}"]`);
+        const ratingLabel = this.el.querySelector(`[for="rating-${superhero.name}-${id}"]`);
 
         if (id > prevRatingID + 1 && id <= this.rating.id) {
           ++delay;
