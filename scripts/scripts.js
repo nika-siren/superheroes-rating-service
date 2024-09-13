@@ -142,11 +142,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			<span class="rating__sr">5 stars—Excellent</span>
       </label>
       
-      <p class="rating__display" data-rating="1" hidden>Terrible</p>
-      <p class="rating__display" data-rating="2" hidden>Bad</p>
-      <p class="rating__display" data-rating="3" hidden>OK</p>
-      <p class="rating__display" data-rating="4" hidden>Good</p>
-      <p class="rating__display" data-rating="5" hidden>Excellent</p>
+      <p class="rating__display" data-rating="1" hidden>Ужасно</p>
+      <p class="rating__display" data-rating="2" hidden>Плохо</p>
+      <p class="rating__display" data-rating="3" hidden>Нормально</p>
+      <p class="rating__display" data-rating="4" hidden>Хорошо</p>
+      <p class="rating__display" data-rating="5" hidden>Отлично</p>
       </div>
       </form>
       </div>`;
@@ -157,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* starrating part */
 
-  document.addEventListener("DOMContentLoaded", () => {
+  window.addEventListener("DOMContentLoaded", () => {
     const starRating = new StarRating("form");
   });
 
@@ -175,34 +175,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
       this.init();
     }
-
     init() {
-      this.el.addEventListener("change", this.updateRating.bind(this));
+      this.el?.addEventListener("change", this.updateRating.bind(this));
 
       // stop Firefox from preserving form data between refreshes
-      // останавливаем Firefox от сохранения данных формы между обновлениями
-      // try {
-      //  this.el.reset();
-      // } catch (err) {
-      // console.error("Element isn’t a form.");
-        // выводим ошибку в консоль, если элемент не является формой
-     // }
+      try {
+        this.el?.reset();
+      } catch (err) {
+        console.error("Element isn’t a form.");
+      }
     }
-
     updateRating(e) {
       // clear animation delays
-      // очищаем задержки для анимации
-      Array.from(this.el.querySelectorAll(`[for^="rating-"]`)).forEach((el) => {
-        el.classList.remove(
-          "rating__label--delay1",
-          "rating__label--delay2",
-          "rating__label--delay3",
-          "rating__label--delay4"
-        );
+      Array.from(this.el.querySelectorAll(`[for*="rating"]`)).forEach((el) => {
+        el.className = "rating__label";
       });
 
       const ratingObject = this.ratings.find((r) => r.id === +e.target.value);
-      const prevRatingID = this.rating ? this.rating.id : 0;
+      const prevRatingID = this.rating?.id || 0;
 
       let delay = 0;
       this.rating = ratingObject;
@@ -210,8 +200,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const { id } = rating;
 
         // add the delays
-        // добавляем задержки
-        const ratingLabel = this.el.querySelector(`[for="rating-${superhero.name}-${id}"]`);
+        const ratingLabel = this.el.querySelector(`[for="rating-${id}"]`);
 
         if (id > prevRatingID + 1 && id <= this.rating.id) {
           ++delay;
@@ -219,27 +208,30 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         // hide ratings to not read, show the one to read
-        // скрываем оценки, которые не нужно показывать, показываем нужную оценку
         const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
 
         if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
         else ratingTextEl.removeAttribute("hidden");
       });
+
     }
+    
   }
+
+    let rat = document.querySelector('rating').innerHTML;
+  console.log(rat);
 
   /* starrating part */
 
   /*
       // Добавляем обработчики событий для оценки героев
-      const stars = superheroElement.querySelectorAll(".star");
+      const stars = superheroElement.querySelectorAll(".rating__input");
       stars.forEach((star) => {
         star.addEventListener("click", function () {
           const superheroName =
             this.parentElement.getAttribute("data-superhero");
           const rating = parseInt(this.getAttribute("data-value"));
           localStorage.setItem(superheroName, rating);
-          alert(`You have rated ${superheroName} with ${rating} stars`);
         });
       });
     });
