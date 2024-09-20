@@ -17,13 +17,6 @@ class StarRating {
   }
   init() {
     this.el?.addEventListener("change", this.updateRating.bind(this));
-
-    // stop Firefox from preserving form data between refreshes
-    // try {
-    // this.el?.reset();
-    // } catch (err) {
-    // console.error("Element isn’t a form.");
-    // }
   }
   updateRating(e) {
     const ratingStoraged = localStorage.getItem(this.hero);
@@ -69,13 +62,6 @@ class StarRating {
       if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
       else ratingTextEl.removeAttribute("hidden");
 
-      // if (id <= this.rating.id) {
-      //   ratingLabel.querySelector('.rating__star-fill').style.fill = 'blue';
-      // } else {
-      //   ratingLabel.querySelector('.rating__star-fill').style.fill = 'black';
-      // }
-      // localStorage.setItem(this.style.fill);
-      //console.log(Str(this.style.fill));
     });
   }
   checkRating() {
@@ -256,37 +242,12 @@ document.addEventListener("DOMContentLoaded", function () {
         superhero.name
       );
       starRating.checkRating();
-      //console.log(localStorage.getItem(this.hero, this.rating));
-      //console.log(starRating);
-      //console.log(starRating.rating);
       
 
       const ratingStoraged = localStorage.getItem(superhero.name);
-      //console.log(ratingStoraged);
       if (ratingStoraged) {
         starRating.rating = parseInt(ratingStoraged);
-        //starRating.el.innerHTML = `<p>id: ${parseInt(ratingStoraged)}</p>
-        //<p>name:${starRating.ratings.find((r) => r.id === parseInt(ratingStoraged)).name}</p>`;
       }
-
-      //const starFilled = localStorage.getItem(this.style.fill);
-      //  if (starFilled) {
-      //   this.style.fill = 'blue'
-      //  }
-      //  else {
-      //   this.style.fill = 'black'
-      //  }
-
-    //  let starFill = document.querySelector('rating__star-fill');
-      //starFill.setAttribute('fill', 'red');
-      // starFill.forEach((s) => {
-        // if (starRating.getAttribute("id") <= starRating.getAttribute("name").length) {
-        //  s.style.color = "blue";
-       // } else {
-       //   s.style.color = "pink";
-      //  }
-     // })
-    //  console.log(starRating.getAttribute("name").length);
     });
   }
 })
