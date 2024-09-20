@@ -1,3 +1,102 @@
+/* starrating part */
+
+class StarRating {
+  constructor(className, hero) {
+    this.ratings = [
+      { id: 1, name: "Terrible" },
+      { id: 2, name: "Bad" },
+      { id: 3, name: "OK" },
+      { id: 4, name: "Good" },
+      { id: 5, name: "Excellent" },
+    ];
+    this.hero = hero;
+    this.rating = null;
+    this.el = document.querySelector(className);
+
+    this.init();
+  }
+  init() {
+    this.el?.addEventListener("change", this.updateRating.bind(this));
+
+    // stop Firefox from preserving form data between refreshes
+    // try {
+    // this.el?.reset();
+    // } catch (err) {
+    // console.error("Element isn’t a form.");
+    // }
+  }
+  updateRating(e) {
+    const ratingStoraged = localStorage.getItem(this.hero);
+
+    if (ratingStoraged) {
+      this.rating = parseInt(ratingStoraged);
+      
+      for (let i = 1; i < this.rating+1; i++) {
+        const ratingLabel = document.querySelector(
+          `label[for="rating-${this.hero}-${i}"]`
+        );
+        ratingLabel.children[0].classList.remove('ls_fill');
+        ratingLabel.children[0].classList.remove('ls_stroke');
+      }
+    }
+    // clear animation delays
+    Array.from(this.el.querySelectorAll(`[for*="rating"]`)).forEach((el) => {
+      el.className = "rating__label";
+    });
+
+    const ratingObject = this.ratings.find((r) => r.id === +e.target.value);
+    const prevRatingID = this.rating?.id || 0;
+
+    let delay = 0;
+    this.rating = ratingObject;
+    this.ratings.forEach((rating) => {
+      const { id } = rating;
+
+      // add the delays
+      const ratingLabel = this.el.querySelector(
+        `[for="rating-${this.hero}-${id}"]`
+      );
+
+      if (id > prevRatingID + 1 && id <= this.rating.id) {
+        ++delay;
+        ratingLabel.classList.add(`rating__label--delay${delay}`);
+      }
+
+      // hide ratings to not read, show the one to read
+      const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
+      localStorage.setItem(this.hero, this.rating.id);
+
+      if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
+      else ratingTextEl.removeAttribute("hidden");
+
+      // if (id <= this.rating.id) {
+      //   ratingLabel.querySelector('.rating__star-fill').style.fill = 'blue';
+      // } else {
+      //   ratingLabel.querySelector('.rating__star-fill').style.fill = 'black';
+      // }
+      // localStorage.setItem(this.style.fill);
+      //console.log(Str(this.style.fill));
+    });
+  }
+  checkRating() {
+    const ratingStoraged = localStorage.getItem(this.hero);
+
+    if (ratingStoraged) {
+      this.rating = parseInt(ratingStoraged);
+      
+      for (let i = 1; i < this.rating+1; i++) {
+        const ratingLabel = document.querySelector(
+          `label[for="rating-${this.hero}-${i}"]`
+        );
+        ratingLabel.children[0].classList.add('ls_fill');
+        ratingLabel.children[0].classList.add('ls_stroke');
+      }
+    }
+  }
+}
+
+/* starrating part */
+
 document.addEventListener("DOMContentLoaded", function () {
   let gallery = document.getElementById("gallery");
 
@@ -25,7 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <p><strong>Superpowers:</strong> ${superhero.superpowers}</p>
       <div class="rating" data-superhero="${superhero.name}">
       
-      <form class="rating">
+      <form class="rating-${superhero.name}">
       <div class="rating__stars">
       <input id="rating-${superhero.name}-1" class="rating__input rating__input-1" type="radio" name="rating" value="1">
       <input id="rating-${superhero.name}-2" class="rating__input rating__input-2" type="radio" name="rating" value="2">
@@ -152,89 +251,42 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`;
 
       gallery.appendChild(superheroElement);
-    });
-  }
+      const starRating = new StarRating(
+        `.rating-${superhero.name}`,
+        superhero.name
+      );
+      starRating.checkRating();
+      //console.log(localStorage.getItem(this.hero, this.rating));
+      //console.log(starRating);
+      //console.log(starRating.rating);
+      
 
-  /* starrating part */
-
-  window.addEventListener("DOMContentLoaded", () => {
-    const starRating = new StarRating("form");
-  });
-
-  class StarRating {
-    constructor(qs) {
-      this.ratings = [
-        { id: 1, name: "Terrible" },
-        { id: 2, name: "Bad" },
-        { id: 3, name: "OK" },
-        { id: 4, name: "Good" },
-        { id: 5, name: "Excellent" },
-      ];
-      this.rating = null;
-      this.el = document.querySelector(qs);
-
-      this.init();
-    }
-    init() {
-      this.el?.addEventListener("change", this.updateRating.bind(this));
-
-      // stop Firefox from preserving form data between refreshes
-      try {
-        this.el?.reset();
-      } catch (err) {
-        console.error("Element isn’t a form.");
+      const ratingStoraged = localStorage.getItem(superhero.name);
+      //console.log(ratingStoraged);
+      if (ratingStoraged) {
+        starRating.rating = parseInt(ratingStoraged);
+        //starRating.el.innerHTML = `<p>id: ${parseInt(ratingStoraged)}</p>
+        //<p>name:${starRating.ratings.find((r) => r.id === parseInt(ratingStoraged)).name}</p>`;
       }
-    }
-    updateRating(e) {
-      // clear animation delays
-      Array.from(this.el.querySelectorAll(`[for*="rating"]`)).forEach((el) => {
-        el.className = "rating__label";
-      });
 
-      const ratingObject = this.ratings.find((r) => r.id === +e.target.value);
-      const prevRatingID = this.rating?.id || 0;
+      //const starFilled = localStorage.getItem(this.style.fill);
+      //  if (starFilled) {
+      //   this.style.fill = 'blue'
+      //  }
+      //  else {
+      //   this.style.fill = 'black'
+      //  }
 
-      let delay = 0;
-      this.rating = ratingObject;
-      this.ratings.forEach((rating) => {
-        const { id } = rating;
-
-        // add the delays
-        const ratingLabel = this.el.querySelector(`[for="rating-${id}"]`);
-
-        if (id > prevRatingID + 1 && id <= this.rating.id) {
-          ++delay;
-          ratingLabel.classList.add(`rating__label--delay${delay}`);
-        }
-
-        // hide ratings to not read, show the one to read
-        const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
-
-        if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
-        else ratingTextEl.removeAttribute("hidden");
-      });
-
-    }
-    
-  }
-
-    let rat = document.querySelector('rating').innerHTML;
-  console.log(rat);
-
-  /* starrating part */
-
-  /*
-      // Добавляем обработчики событий для оценки героев
-      const stars = superheroElement.querySelectorAll(".rating__input");
-      stars.forEach((star) => {
-        star.addEventListener("click", function () {
-          const superheroName =
-            this.parentElement.getAttribute("data-superhero");
-          const rating = parseInt(this.getAttribute("data-value"));
-          localStorage.setItem(superheroName, rating);
-        });
-      });
+    //  let starFill = document.querySelector('rating__star-fill');
+      //starFill.setAttribute('fill', 'red');
+      // starFill.forEach((s) => {
+        // if (starRating.getAttribute("id") <= starRating.getAttribute("name").length) {
+        //  s.style.color = "blue";
+       // } else {
+       //   s.style.color = "pink";
+      //  }
+     // })
+    //  console.log(starRating.getAttribute("name").length);
     });
   }
-    */
-});
+})

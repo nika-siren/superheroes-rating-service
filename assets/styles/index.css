@@ -13,6 +13,14 @@
   --trans-dur: 0.3s;
 }
 
+.ls_fill polygon {
+  fill: var(--yellow);
+}
+
+.ls_stroke polygon {
+  stroke: var(--yellow);
+}
+
 body {
   background-color: rgb(35, 35, 65);
   color: var(--fg);
@@ -51,10 +59,12 @@ body {
 
 .superhero h2 {
   margin-top: 10px;
+  font-size: 25px;
 }
 
 .superhero p {
   margin-bottom: 10px;
+  font-size: 20px;
 }
 
 .rating {
