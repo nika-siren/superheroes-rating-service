@@ -1,5 +1,6 @@
 [
   {
+    "id": "10",
     "name": "Бетмен",
     "universe": "DC Comics",
     "alterego": "Брюс Уэйн",
@@ -9,6 +10,7 @@
     "url": "../assets/images/batman.jpg"
   },
   {
+    "id": "20",
     "name": "Супермен",
     "universe": "DC Comics",
     "alterego": "Кларк Кент",
@@ -18,6 +20,7 @@
     "url": "../assets/images/superman.jpg"
   },
   {
+    "id": "30",
     "name": "Железный человек",
     "universe": "Marvel Comics",
     "alterego": "Тони Старк",
@@ -27,6 +30,7 @@
     "url": "../assets/images/iron-man.jpg"
   },
   {
+    "id": "40",
     "name": "Спайдер-мен",
     "universe": "Marvel Comics",
     "alterego": "Питер Паркер",
@@ -36,6 +40,7 @@
     "url": "../assets/images/spiderman.jpg"
   },
   {
+    "id": "50",
     "name": "Капитан Америка",
     "universe": "Marvel Comics",
     "alterego": "Стивен Роджерс",
@@ -45,6 +50,7 @@
     "url": "../assets/images/cap.jpg"
   },
   {
+    "id": "60",
     "name": "Тор",
     "universe": "Marvel Comics",
     "alterego": "нет; полное имя — Тор Одинсон",
@@ -54,6 +60,7 @@
     "url": "../assets/images/thor.jpg"
   },
   {
+    "id": "70",
     "name": "Халк",
     "universe": "Marvel Comics",
     "alterego": "Брюс Беннер",
@@ -63,6 +70,7 @@
     "url": "../assets/images/hulk.jpg"
   },
   {
+    "id": "80",
     "name": "Чудо-женщина",
     "universe": "DC Comics",
     "alterego": "Диана Принс",
@@ -72,6 +80,7 @@
     "url": "../assets/images/wonder-woman.jpg"
   },
   {
+    "id": "90",
     "name": "Черная вдова",
     "universe": "Marvel Comics",
     "alterego": "Наташа Романофф",
@@ -81,6 +90,7 @@
     "url": "../assets/images/black-widow.jpg"
   },
   {
+    "id": "100",
     "name": "Дэдпул",
     "universe": "Marvel Comics",
     "alterego": "Уэйд Уинстон Уилсон",

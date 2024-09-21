@@ -57,7 +57,7 @@ class StarRating {
 
       // hide ratings to not read, show the one to read
       const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
-      localStorage.setItem(JSON.stringify(this.hero), this.rating.id);
+      localStorage.setItem(this.hero, this.rating.id);
 
       if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
       else ratingTextEl.removeAttribute("hidden");
@@ -112,14 +112,14 @@ document.addEventListener("DOMContentLoaded", function () {
       <p><strong>Superpowers:</strong> ${superhero.superpowers}</p>
       <div class="rating" data-superhero="${superhero.name}">
       
-      <form class="rating-${superhero.name}">
+      <form class="rating-${superhero.id}">
       <div class="rating__stars">
-      <input id="rating-${superhero.name}-1" class="rating__input rating__input-1" type="radio" name="rating" value="1">
-      <input id="rating-${superhero.name}-2" class="rating__input rating__input-2" type="radio" name="rating" value="2">
-      <input id="rating-${superhero.name}-3" class="rating__input rating__input-3" type="radio" name="rating" value="3">
-      <input id="rating-${superhero.name}-4" class="rating__input rating__input-4" type="radio" name="rating" value="4">
-      <input id="rating-${superhero.name}-5" class="rating__input rating__input-5" type="radio" name="rating" value="5">
-      <label class="rating__label" for="rating-${superhero.name}-1">
+      <input id="rating-${superhero.id}-1" class="rating__input rating__input-1" type="radio" name="rating" value="1">
+      <input id="rating-${superhero.id}-2" class="rating__input rating__input-2" type="radio" name="rating" value="2">
+      <input id="rating-${superhero.id}-3" class="rating__input rating__input-3" type="radio" name="rating" value="3">
+      <input id="rating-${superhero.id}-4" class="rating__input rating__input-4" type="radio" name="rating" value="4">
+      <input id="rating-${superhero.id}-5" class="rating__input rating__input-5" type="radio" name="rating" value="5">
+      <label class="rating__label" for="rating-${superhero.id}-1">
       <svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 				<g transform="translate(16,16)">
 					<circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			<span class="rating__sr">1 star—Terrible</span>
       </label>
 
-      <label class="rating__label" for="rating-${superhero.name}-2">
+      <label class="rating__label" for="rating-${superhero.id}-2">
 			<svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 				<g transform="translate(16,16)">
 					<circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			<span class="rating__sr">2 stars—Bad</span>
       </label>
 
-      <label class="rating__label" for="rating-${superhero.name}-3">
+      <label class="rating__label" for="rating-${superhero.id}-3">
 			<svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 				<g transform="translate(16,16)">
 					<circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			<span class="rating__sr">3 stars—OK</span>
       </label>
 
-      <label class="rating__label" for="rating-${superhero.name}-4">
+      <label class="rating__label" for="rating-${superhero.id}-4">
 			<svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 				<g transform="translate(16,16)">
 					<circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
@@ -207,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			<span class="rating__sr">4 stars—Good</span>
       </label>
 
-      <label class="rating__label" for="rating-${superhero.name}-5">
+      <label class="rating__label" for="rating-${superhero.id}-5">
 			<svg class="rating__star" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 				<g transform="translate(16,16)">
 					<circle class="rating__star-ring" fill="none" stroke="#000" stroke-width="16" r="8" transform="scale(0)" />
@@ -240,13 +240,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       gallery.appendChild(superheroElement);
       const starRating = new StarRating(
-        `.rating-${superhero.name}`,
-        superhero.name
+        `.rating-${superhero.id}`,
+        superhero.id
       );
       starRating.checkRating();
       
 
-      const ratingStoraged = localStorage.getItem(superhero.name);
+      const ratingStoraged = localStorage.getItem(superhero.id);
       if (ratingStoraged) {
         starRating.rating = parseInt(ratingStoraged);
       }
