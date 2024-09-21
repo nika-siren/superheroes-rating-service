@@ -57,7 +57,7 @@ class StarRating {
 
       // hide ratings to not read, show the one to read
       const ratingTextEl = this.el.querySelector(`[data-rating="${id}"]`);
-      localStorage.setItem(this.hero, this.rating.id);
+      localStorage.setItem(JSON.stringify(this.hero), this.rating.id);
 
       if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
       else ratingTextEl.removeAttribute("hidden");
@@ -66,6 +66,8 @@ class StarRating {
   }
   checkRating() {
     const ratingStoraged = localStorage.getItem(this.hero);
+    //const ratingStoraged = localStorage.getItem(JSON.stringify(this.hero));
+    // console.log(ratingStoraged)
 
     if (ratingStoraged) {
       this.rating = parseInt(ratingStoraged);
