@@ -7,7 +7,7 @@
     "occupation": "борец с преступностью, филантроп, миллиардер",
     "friends": "Робин, Бэтгерл",
     "superpowers": "интеллект, обширные познания, знания боевых искусств, ловкость",
-    "url": "../assets/images/batman.jpg"
+    "url": "./assets/images/batman.jpg"
   },
   {
     "id": "20",
@@ -17,7 +17,7 @@
     "occupation": "борец за справедливость",
     "friends": "собака Крипто",
     "superpowers": "непробиваемость, суперсила, полёт, самоисцеление, суперзрение и суперслух, классный костюм",
-    "url": "../assets/images/superman.jpg"
+    "url": "./assets/images/superman.jpg"
   },
   {
     "id": "30",
@@ -27,7 +27,7 @@
     "occupation": "гений, миллиардер, плейбой, филантроп",
     "friends": "Мстители",
     "superpowers": "высокий уровень интеллекта, широкие познания науки и техники, связь со всемирной паутиной, бронекостюмы",
-    "url": "../assets/images/iron-man.jpg"
+    "url": "./assets/images/iron-man.jpg"
   },
   {
     "id": "40",
@@ -37,7 +37,7 @@
     "occupation": "борец за справедливость, студент, фотограф",
     "friends": "Мстители, Фантастическая четверка, Люди Икс",
     "superpowers": "сверхчеловеческие рефлексы, «паучье чутьё», способность прилепляться к твердым поверхностям, производство паутины",
-    "url": "../assets/images/spiderman.jpg"
+    "url": "./assets/images/spiderman.jpg"
   },
   {
     "id": "50",
@@ -47,7 +47,7 @@
     "occupation": "супер-солдат",
     "friends": "Мстители",
     "superpowers": "сила, выносливость, бессмертие, быстрая регенерация, мастерство скрытности и боя",
-    "url": "../assets/images/cap.jpg"
+    "url": "./assets/images/cap.jpg"
   },
   {
     "id": "60",
@@ -57,7 +57,7 @@
     "occupation": "борец за справедливость, скандинавский бог",
     "friends": "Мстители",
     "superpowers": "всё, что может бог, плюс молот Мьелнир",
-    "url": "../assets/images/thor.jpg"
+    "url": "./assets/images/thor.jpg"
   },
   {
     "id": "70",
@@ -67,7 +67,7 @@
     "occupation": "супергерой, борец за справедливость, ученый-биохимик",
     "friends": "Мстители",
     "superpowers": "сверхчеловеческая сила и скорость, выносливость, полёт",
-    "url": "../assets/images/hulk.jpg"
+    "url": "./assets/images/hulk.jpg"
   },
   {
     "id": "80",
@@ -77,7 +77,7 @@
     "occupation": "супергерой, секретарь-референт",
     "friends": "Лига Справедливости, Бэтмен, Супермен",
     "superpowers": "сверхчеловеческая сила и скорость, выносливость, полёт",
-    "url": "../assets/images/wonder-woman.jpg"
+    "url": "./assets/images/wonder-woman.jpg"
   },
   {
     "id": "90",
@@ -87,7 +87,7 @@
     "occupation": "супергерой, шпион",
     "friends": "Мстители",
     "superpowers": "пик человеческого физического потенциала, замедленное старение, знание многих языков",
-    "url": "../assets/images/black-widow.jpg"
+    "url": "./assets/images/black-widow.jpg"
   },
   {
     "id": "100",
@@ -97,6 +97,6 @@
     "occupation": "антигерой, наёмник",
     "friends": "частично Мстители, Человек-паук, Росомаха",
     "superpowers": "высокий болевой порог, регенерация и бессмертие, сверхчеловеческая иммунная система",
-    "url": "../assets/images/deadpool.jpg"
+    "url": "./assets/images/deadpool.jpg"
   }
 ]
