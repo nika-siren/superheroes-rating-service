@@ -23,13 +23,12 @@ class StarRating {
 
     if (ratingStoraged) {
       this.rating = parseInt(ratingStoraged);
-      
-      for (let i = 1; i < this.rating+1; i++) {
+
+      for (let i = 1; i < this.rating + 1; i++) {
         const ratingLabel = document.querySelector(
           `label[for="rating-${this.hero}-${i}"]`
         );
-        ratingLabel.children[0].classList.remove('ls_fill');
-        ratingLabel.children[0].classList.remove('ls_stroke');
+        ratingLabel.children[0].classList.remove("ls_fill", "ls_stroke");
       }
     }
     // clear animation delays
@@ -61,7 +60,6 @@ class StarRating {
 
       if (this.rating.id !== id) ratingTextEl.setAttribute("hidden", true);
       else ratingTextEl.removeAttribute("hidden");
-
     });
   }
   checkRating() {
@@ -71,13 +69,12 @@ class StarRating {
 
     if (ratingStoraged) {
       this.rating = parseInt(ratingStoraged);
-      
-      for (let i = 1; i < this.rating+1; i++) {
+
+      for (let i = 1; i < this.rating + 1; i++) {
         const ratingLabel = document.querySelector(
           `label[for="rating-${this.hero}-${i}"]`
         );
-        ratingLabel.children[0].classList.add('ls_fill');
-        ratingLabel.children[0].classList.add('ls_stroke');
+        ratingLabel.children[0].classList.add("ls_fill", "ls_stroke");
       }
     }
   }
@@ -96,10 +93,16 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .catch((error) => console.error("Error fetching data:", error));
 
+    function displayGallery(superheroes) {
+      gallery.innerHTML = "";
+      superheroes.forEach((superhero) => {
+        createSuperheroElement(superhero, gallery);
+      });
+    }
+
   // Функция для отображения информации о героях
-  function displayGallery(superheroes) {
-    gallery.innerHTML = "";
-    superheroes.forEach((superhero) => {
+  
+    function createSuperheroElement(superhero, gallery) {
       const superheroElement = document.createElement("div");
       superheroElement.classList.add("superhero");
       superheroElement.innerHTML = `<img src="${superhero.url}"
@@ -244,12 +247,11 @@ document.addEventListener("DOMContentLoaded", function () {
         superhero.id
       );
       starRating.checkRating();
-      
 
       const ratingStoraged = localStorage.getItem(superhero.id);
       if (ratingStoraged) {
         starRating.rating = parseInt(ratingStoraged);
       }
-    });
+    };
   }
-})
+);
